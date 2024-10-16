@@ -1,0 +1,153 @@
+@startuml
+
+participant FE as "Front-end (Client)"
+participant BE as "Sight Service :: Followers (Server)"
+
+title "Follower Service API"
+
+== Calls ==
+
+FE -> BE: subscribe(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "username" : "@johndoe",
+    "followers" : true,
+    "following" : true,
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "token" : "sha-256",
+    "error" : 0
+  }
+endnote
+
+...
+
+FE -> BE: get_followers(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "token" : "sha-256",
+    "from" : {
+      "date" : "dd.mm.yy",
+      "time" : "hh.mm"
+    },
+    "to" : {
+      "date" : "dd.mm.yy",
+      "time" : "hh.mm"
+    }
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "all" : [*],
+    "subscribed" : [
+      {
+        "username" : "@johndoe",
+        "date" : "dd.mm.yy",
+        "time" : "hh.mm"
+      }
+    ],
+    "unsubscribed" : [
+      {
+        "username" : "@johndoe",
+        "date" : "dd.mm.yy",
+        "time" : "hh.mm"
+      }
+    ],
+  }
+endnote
+
+...
+
+FE -> BE: get_following(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "token" : "sha-256",
+    "from" : {
+      "date" : "dd.mm.yy",
+      "time" : "hh.mm"
+    },
+    "to" : {
+      "date" : "dd.mm.yy",
+      "time" : "hh.mm"
+    }
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "all" : [*],
+    "subscribed" : [
+      {
+        "username" : "@johndoe",
+        "date" : "dd.mm.yy",
+        "time" : "hh.mm"
+      }
+    ],
+    "unsubscribed" : [
+      {
+        "username" : "@johndoe",
+        "date" : "dd.mm.yy",
+        "time" : "hh.mm"
+      }
+    ],
+  }
+endnote
+
+...
+
+FE -> BE: unsubscribe(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "error" : 0
+  }
+endnote
+
+== Events ==
+
+BE ->> FE: followers_list_updated(notification : json)
+
+note right BE
+  notification {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+...
+
+BE ->> FE: following_list_updated(notification : json)
+
+note right BE
+  notification {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+@enduml

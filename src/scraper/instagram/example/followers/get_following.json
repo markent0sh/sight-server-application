@@ -1,0 +1,20 @@
+// Request
+{
+  "target" : "johndoe"
+}
+
+// Response
+{
+  "following" : [
+    {
+      "username" : "someguy",
+      "name" : "Some Guy",
+      "pic_url" : "url"
+    },
+    {
+      "username" : "otherguy",
+      "name" : "Other Guy",
+      "pic_url" : "url"
+    }
+  ]
+}

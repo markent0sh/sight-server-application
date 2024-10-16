@@ -1,0 +1,16 @@
+db.getCollection("story-service-data-collection").insertMany([
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/Edit_4x_rifle_scope.jpg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/test.jpg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/1ккк.jpg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/ber.jpg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/756ac8864b07aaf0393073b2741213ad.jpeg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/images.jpeg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/121212121.jpg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/test-video-s3.mp4", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/download.jpeg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/1_mk1-6aYaf_Bes1E3Imhc0A.jpeg", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/test_video.mp4", "date" : "15.04.2024", "time" : "03:14"},
+  {"target-username": "MishaTester", "uri": "/home/mark-ssd/test-data/ккк.jpg", "date" : "15.04.2024", "time" : "03:14"},
+])
+
+db.getCollection("story-service-data-collection").deleteMany({})

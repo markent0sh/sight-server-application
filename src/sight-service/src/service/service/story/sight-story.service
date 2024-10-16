@@ -1,0 +1,12 @@
+[Unit]
+Description=Sight Server Story service
+After=mongod.service
+Wants=mongod.service
+
+[Service]
+ExecStart=/usr/local/bin/story-sight-service
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

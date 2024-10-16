@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package follower.v1;
+
+service FollowerService {
+  rpc Subscribe(SubscribeRequest) returns (SubscribeResponse);
+  rpc Unsubscribe(UnsubscribeRequest) returns (UnsubscribeResponse);
+  rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse);
+  rpc GetFollowing(GetFollowingRequest) returns (GetFollowingResponse);
+  rpc GetClientTargets(GetClientTargetsRequest) returns (GetClientTargetsResponse);
+}
+
+enum PollFrequency {
+  RARE = 0;
+  MEDIUM = 1;
+  FAST = 2;
+  VERY_FAST = 3;
+  QUANTUM = 4;
+}
+
+message Target {
+  string username = 1;
+  bool followers = 2;
+  bool following = 3;
+  PollFrequency frequency = 4;
+}
+
+message Timestamp {
+  string date = 1;
+  string time = 2;
+}
+
+message Follower {
+  string username = 1;
+  string full_name = 2;
+  string pic_url = 3;
+  Timestamp timestamp = 4;
+}
+
+message SubscribeRequest {
+  int64 client = 1;
+  Target target = 2;
+}
+
+message SubscribeResponse {
+  int32 error_code = 2;
+}
+
+message UnsubscribeRequest {
+  int64 client = 1;
+  string username = 2;
+}
+
+message UnsubscribeResponse {
+  int32 error_code = 1;
+}
+
+message GetFollowersRequest {
+  int64 client = 1;
+  string username = 2;
+  Timestamp from = 3;
+  Timestamp to = 4;
+}
+
+message GetFollowingRequest {
+  int64 client = 1;
+  string username = 2;
+  Timestamp from = 3;
+  Timestamp to = 4;
+}
+
+message GetFollowersResponse {
+  repeated Follower all = 1;
+  repeated Follower subscribed = 2;
+  repeated Follower unsubscribed = 3;
+  int32 error_code = 4;
+}
+
+message GetFollowingResponse {
+  repeated Follower all = 1;
+  repeated Follower subscribed = 2;
+  repeated Follower unsubscribed = 3;
+  int32 error_code = 4;
+}
+
+message GetClientTargetsRequest {
+  int64 client = 1;
+}
+
+message GetClientTargetsResponse {
+  repeated Target targets = 1;
+  int32 error_code = 2;
+}

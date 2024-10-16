@@ -1,0 +1,25 @@
+// Request
+{
+  "target" : "JohnDoe"
+}
+
+// Response
+{
+  "stories" : [
+    {
+      "id" : "pk",
+      "video_url" : "url",
+      "photo_url" : "url",
+      "timestamp" : "timestamp",
+      "links" : [], // -
+      "hashtags" : [], // -
+      "locations" : [], // -
+      "stickers" : [
+        {
+          "direct_url" : "url",
+          "display_url" : "url"
+        }
+      ]
+    }
+  ],
+}

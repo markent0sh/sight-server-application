@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package story.v1;
+
+service StoryService {
+  rpc Subscribe(SubscribeRequest) returns (SubscribeResponse);
+  rpc Unsubscribe(UnsubscribeRequest) returns (UnsubscribeResponse);
+  rpc GetAvailableStories(GetAvailableStoriesRequest) returns (GetAvailableStoriesResponse);
+  rpc GetClientTargets(GetClientTargetsRequest) returns (GetClientTargetsResponse);
+}
+
+enum PollFrequency {
+  RARE = 0;
+  MEDIUM = 1;
+  FAST = 2;
+  VERY_FAST = 3;
+  QUANTUM = 4;
+}
+
+message Target {
+  string username = 1;
+  PollFrequency frequency = 2;
+}
+
+message SubscribeRequest {
+  int64 client = 1;
+  Target target = 2;
+}
+
+message SubscribeResponse {
+  int32 error_code = 1;
+}
+
+message UnsubscribeRequest {
+  int64 client = 1;
+  string username = 2;
+}
+
+message UnsubscribeResponse {
+  int32 error_code = 1;
+}
+
+message Timestamp {
+  string date = 1;
+  string time = 2;
+}
+
+message Story {
+  Timestamp timestamp = 1;
+  string uri = 2;
+}
+
+message GetAvailableStoriesRequest {
+  int64 client = 1;
+  string username = 2;
+}
+
+message GetAvailableStoriesResponse {
+  repeated Story stories = 1;
+  int32 error_code = 2;
+}
+
+message GetClientTargetsRequest {
+  int64 client = 1;
+}
+
+message GetClientTargetsResponse {
+  repeated Target targets = 1;
+  int32 error_code = 2;
+}

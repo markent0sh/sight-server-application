@@ -1,0 +1,84 @@
+@startuml
+
+participant FE as "Front-end (Client)"
+participant BE as "Sight Service :: Story (Server)"
+
+title "Story Service API"
+
+== Calls ==
+
+FE -> BE: subscribe(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "username" : "@johndoe"
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "token" : "sha-256",
+    "error" : 0
+  }
+endnote
+
+...
+
+FE -> BE: get_available_stories(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "stories" : [
+      {
+        "date" : "dd.mm.yy",
+        "time" : "hh.mm",
+        "uri" : "uri"
+      }
+    ],
+    "error" : 0
+  }
+endnote
+
+...
+
+FE -> BE: unsubscribe(request : json)
+
+note left FE
+  request {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+BE -> FE: result : json
+
+note right BE
+  result {
+    "error" : 0
+  }
+endnote
+
+== Events ==
+
+BE ->> FE: stories_updated(notification : json)
+
+note right BE
+  notification {
+    "client" : 0,
+    "token" : "sha-256"
+  }
+endnote
+
+@enduml

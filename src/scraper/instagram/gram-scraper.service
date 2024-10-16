@@ -1,0 +1,13 @@
+[Unit]
+Description=Sight Server Instagram scraper
+After=network.target
+Wants=network.target
+
+[Service]
+WorkingDirectory=/home/mark-ssd/code/mdb/src/scraper/instagram
+ExecStart=/usr/bin/python3 /home/mark-ssd/code/mdb/src/scraper/instagram/app.py
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

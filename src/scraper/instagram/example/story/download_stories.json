@@ -1,0 +1,15 @@
+// Request
+{
+  "target" : "JohnDoe",
+  "stories" : ["pk"]
+}
+
+// Response
+{
+  "stories" : [
+    {
+      "id" : "pk",
+      "uri" : "uri"
+    }
+  ]
+}
